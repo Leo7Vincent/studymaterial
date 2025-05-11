@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <div class="notice">🚧 This site is still under construction 🚧</div>
   <title>Select Resource</title>
   <style>
     body {
@@ -53,6 +52,7 @@
   <script>
     const selectedClass = localStorage.getItem("selectedClass");
     const selectedSubject = localStorage.getItem("selectedSubject");
+
     const resourceContainer = document.getElementById("resourceButtons");
     const bookContainer = document.getElementById("bookButtons");
 
@@ -65,26 +65,24 @@
     const booksByClassSubject = {
       "6-chemistry": ["Selina", "Viraf Dalal"],
       "6-history and civics": ["Focus", "The Trail", "Effective"],
-      "6-geography": ["Voyage","Veena Bhargava"],
+      "6-geography": ["Voyage", "Veena Bhargava"],
       "7-chemistry": ["Selina", "Viraf Dalal"],
       "7-biology": ["Selina", "Living Science"],
-      "7-geography": ["Voyage","Veena Bhargava","Around the world"],
-      "7-history and civics": ["Effective","The Trail","Focus","New combiened textbook of history and civics" ],
+      "7-geography": ["Voyage", "Veena Bhargava", "Around the world"],
+      "7-history and civics": ["Effective", "The Trail", "Focus", "New Combined Textbook"],
       "8-chemistry": ["Selina", "Dalal"],
       "8-biology": ["Selina", "Living Science"],
       "8-maths": ["Selina", "ML Aggrawal"],
-      "8-computers": ["APC understanding", "Logix Kips"],
-      "8-geography": ["Total geography","Veena Bhargava","Around the world"],
-      "9-maths": ["Selina", "MS Aggarwal","Frank"],
+      "8-computers": ["APC Understanding", "Logix Kips"],
+      "8-geography": ["Total Geography", "Veena Bhargava", "Around the world"],
+      "9-maths": ["Selina", "MS Aggrawal", "Frank"],
       "9-biology": ["Selina", "Frank"],
       "9-chemistry": ["Selina", "Frank"],
       "9-physics": ["Selina", "Frank"],
-      "9-geography": ["Total geography","Veena Bhargava"],
-      "9-computer application": ["APC understanding", "Logix Kips"],
-      "10-chemistry": ["Selina","Viraf Dalal"],
-      "10-maths": ["Selina", "MS Aggarwal"],
-      
-       
+      "9-geography": ["Total Geography", "Veena Bhargava"],
+      "9-computer application": ["APC Understanding", "Logix Kips"],
+      "10-chemistry": ["Selina", "Viraf Dalal"],
+      "10-maths": ["Selina", "MS Aggrawal"]
     };
 
     function showBooks(subjectKey, resourceType) {
@@ -117,10 +115,10 @@
         btn.classList.add("disabled");
       } else {
         btn.onclick = () => {
-          const key = `${selectedClass}-${selectedSubject.toLowerCase().replace(/\s+/g, '')}`;
+          const subjectKey = `${selectedClass}-${selectedSubject.toLowerCase()}`;
 
-          if (resource.value === "solutions" && booksByClassSubject[key]) {
-            showBooks(key, resource.value);
+          if (resource.value === "solutions" && booksByClassSubject[subjectKey]) {
+            showBooks(subjectKey, resource.value);
           } else {
             const subjectFile = selectedSubject.toLowerCase().replace(/\s+/g, '');
             const url = `materials/${selectedClass}/${subjectFile}-${resource.value}.html`;
