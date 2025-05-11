@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Select Resource</title>
+  <style>
+    body {
+      background: #fff3e0;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 18px;
+      background: #ffb74d;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #fb8c00;
+    }
+
+    .disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .book-btn {
+      background: #4db6ac;
+    }
+
+    .book-btn:hover {
+      background: #00796b;
+    }
+  </style>
+</head>
+<body>
+  <h2>📚 Choose a Resource</h2>
+  <div id="resourceButtons"></div>
+  <div id="bookButtons" style="margin-top:30px;"></div>
+
+  <script>
+    const selectedClass = localStorage.getItem("selectedClass");
+    const selectedSubject = localStorage.getItem("selectedSubject");
+    const resourceContainer = document.getElementById("resourceButtons");
+    const bookContainer = document.getElementById("bookButtons");
+
+    const resourceTypes = [
+      { label: "Textbook Solutions", value: "solutions" },
+      { label: "Notes", value: "notes" },
+      { label: "PYQs", value: "pyqs" }
+    ];
+
+    const booksByClassSubject = {
+      "9-maths": ["Selina", "MS Aggarwal"],
+      "9-physics": ["Selina"],
+      "9-geography": ["Total geography","Frank brothers"],
+      "10-chemistry": ["Selina","V.Dalal"],
+      "10-maths": ["Selina", "MS Aggarwal"],
+      
+       
+    };
+
+    function showBooks(subjectKey, resourceType) {
+      const books = booksByClassSubject[subjectKey];
+      bookContainer.innerHTML = ""; // Clear old buttons
+
+      if (!books || resourceType !== "solutions") return;
+
+      books.forEach(book => {
+        const bookBtn = document.createElement("button");
+        bookBtn.className = "btn book-btn";
+        bookBtn.textContent = book + " Solutions";
+        bookBtn.onclick = () => {
+          const subjectFile = selectedSubject.toLowerCase().replace(/\s+/g, '');
+          const bookFile = book.toLowerCase().replace(/\s+/g, '');
+          const url = `materials/${selectedClass}/${subjectFile}-${resourceType}-${bookFile}.html`;
+          window.location.href = url;
+        };
+        bookContainer.appendChild(bookBtn);
+      });
+    }
+
+    resourceTypes.forEach(resource => {
+      const btn = document.createElement("button");
+      btn.textContent = resource.label;
+      btn.className = "btn";
+
+      if (resource.value === "pyqs" && selectedClass !== "10") {
+        btn.disabled = true;
+        btn.classList.add("disabled");
+      } else {
+        btn.onclick = () => {
+          const key = `${selectedClass}-${selectedSubject.toLowerCase().replace(/\s+/g, '')}`;
+
+          if (resource.value === "solutions" && booksByClassSubject[key]) {
+            showBooks(key, resource.value);
+          } else {
+            const subjectFile = selectedSubject.toLowerCase().replace(/\s+/g, '');
+            const url = `materials/${selectedClass}/${subjectFile}-${resource.value}.html`;
+            window.location.href = url;
+          }
+        };
+      }
+
+      resourceContainer.appendChild(btn);
+    });
+  </script>
+</body>
+</html>
