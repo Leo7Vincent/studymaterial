@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <div class="notice">🚧 This site is still under construction 🚧</div>
+  <meta charset="UTF-8">
   <title>Select Class</title>
   <style>
     body {
-      background: #f9fbe7;
+      background: linear-gradient(to bottom right, #e3f2fd, #fff3e0);
       font-family: sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       flex-direction: column;
-      transition: all 0.5s ease;
+      overflow: hidden;
+      margin: 0;
     }
 
     h2 {
@@ -24,40 +24,6 @@
       padding: 10px 20px;
       font-size: 18px;
       border-radius: 8px;
-    }
-  </style>
-</head>
-<body>
-  <h2>🎓 Choose Your Class</h2>
-  <select id="classSelector">
-    <option value="">-- Select Class --</option>
-    <option value="6">Class 6</option>
-    <option value="7">Class 7</option>
-    <option value="8">Class 8</option>
-    <option value="9">Class 9</option>
-    <option value="10">Class 10</option>
-  </select>
-
-  <script>
-    document.getElementById('classSelector').addEventListener('change', function () {
-      const selectedClass = this.value;
-      if (selectedClass) {
-        localStorage.setItem("selectedClass", selectedClass);
-        window.location.href = "subject.html";
-      }
-    });
-  </script>
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Animated Background</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: linear-gradient(to bottom right, #e3f2fd, #fff3e0);
     }
 
     .animated-bg {
@@ -97,21 +63,52 @@
         opacity: 0;
       }
     }
+
+    .notice {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ffc107;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      z-index: 2;
+    }
   </style>
 </head>
 <body>
+  <div class="notice">🚧 This site is still under construction 🚧</div>
 
-<div class="animated-bg">
-  <!-- Floating Books -->
-  <div class="shape book" style="left: 5%; animation-delay: 0s;"></div>
-  <div class="shape book" style="left: 30%; animation-delay: 3s;"></div>
+  <h2>🎓 Choose Your Class</h2>
+  <select id="classSelector">
+    <option value="">-- Select Class --</option>
+    <option value="6">Class 6</option>
+    <option value="7">Class 7</option>
+    <option value="8">Class 8</option>
+    <option value="9">Class 9</option>
+    <option value="10">Class 10</option>
+  </select>
 
-  <!-- Floating Cubes -->
-  <div class="shape cube" style="left: 60%; animation-delay: 6s;"></div>
-  <div class="shape cube" style="left: 80%; animation-delay: 1.5s;"></div>
-</div>
-</body>
-</html>
+  <div class="animated-bg">
+    <!-- Floating Books -->
+    <div class="shape book" style="left: 5%; animation-delay: 0s;"></div>
+    <div class="shape book" style="left: 30%; animation-delay: 3s;"></div>
 
+    <!-- Floating Cubes -->
+    <div class="shape cube" style="left: 60%; animation-delay: 6s;"></div>
+    <div class="shape cube" style="left: 80%; animation-delay: 1.5s;"></div>
+  </div>
+
+  <script>
+    document.getElementById('classSelector').addEventListener('change', function () {
+      const selectedClass = this.value;
+      if (selectedClass) {
+        localStorage.setItem("selectedClass", selectedClass);
+        window.location.href = "subject.html";
+      }
+    });
+  </script>
 </body>
 </html>
