@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Select Class</title>
+  <style>
+    body {
+      background: #f9fbe7;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      transition: all 0.5s ease;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    select {
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h2>🎓 Choose Your Class</h2>
+  <select id="classSelector">
+    <option value="">-- Select Class --</option>
+    <option value="6">Class 6</option>
+    <option value="7">Class 7</option>
+    <option value="8">Class 8</option>
+    <option value="9">Class 9</option>
+    <option value="10">Class 10</option>
+  </select>
+
+  <script>
+    document.getElementById('classSelector').addEventListener('change', function () {
+      const selectedClass = this.value;
+      if (selectedClass) {
+        localStorage.setItem("selectedClass", selectedClass);
+        window.location.href = "subject.html";
+      }
+    });
+  </script>
+</body>
+</html>
