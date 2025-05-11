@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Select Subject</title>
+  <title>📘 Choose a Subject</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -35,33 +35,33 @@
 <body>
 
   <h2>📘 Choose a Subject</h2>
-  <div id="subjectContainer"></div>
+  <div id="subjectButtons"></div>
 
   <script>
     const selectedClass = localStorage.getItem("selectedClass");
-    const subjectContainer = document.getElementById("subjectContainer");
+    const container = document.getElementById("subjectButtons");
 
     const subjectsByClass = {
-      "6": [ "Maths", "Physics", "Chemistry", "Biology" , "History & Civics" , "Geography" , "Computers"],
-      "7": ["Maths", "Physics", "Chemistry", "Biology" , "History & Civics" , "Geography" , "Computers"],
-      "8": ["Maths", "Physics", "Chemistry", "Biology" , "History & Civics" , "Geography" , "Computers"],
-      "9": ["Maths", "Physics", "Chemistry", "Biology" , "History & Civics" , "Geography" , "Computers"],
-      "10": ["Maths", "Physics", "Chemistry", "Biology" , "History & Civics" , "Geography" , "Computers"]
+      "6": ["Maths", "Science", "English", "Social Studies"],
+      "7": ["Maths", "Science", "Geography", "English Literature"],
+      "8": ["Maths", "Physics", "Biology", "History"],
+      "9": ["Maths", "Physics", "Chemistry", "Biology", "AI", "History", "Geography"],
+      "10": ["Maths", "Physics", "Chemistry", "Biology", "Computer Applications", "Civics"]
     };
 
     if (selectedClass && subjectsByClass[selectedClass]) {
       subjectsByClass[selectedClass].forEach(subject => {
         const btn = document.createElement("button");
-        btn.className = "subject-btn";
         btn.textContent = subject;
-        btn.addEventListener("click", () => {
+        btn.className = "subject-btn";
+        btn.onclick = () => {
           localStorage.setItem("selectedSubject", subject);
           window.location.href = "resources.html";
-        });
-        subjectContainer.appendChild(btn);
+        };
+        container.appendChild(btn);
       });
     } else {
-      subjectContainer.innerHTML = "<p>Please select a class first.</p>";
+      container.innerHTML = "<p>⚠️ Class not selected. Please <a href='index.html'>go back to home</a>.</p>";
     }
   </script>
 
