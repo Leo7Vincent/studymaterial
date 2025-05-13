@@ -1,33 +1,30 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <div class="notice">🚧 This site is still under construction 🚧</div>
   <title>Choose a Subject</title>
   <style>
-    {
+    body {
       font-family: Arial, sans-serif;
       background-color: #f0f8ff;
       text-align: center;
       padding: 40px;
+      margin: 0;
+      overflow: hidden;
     }
 
-    h1 {
+    .notice {
+      background-color: #ffeb3b;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    h2 {
       font-size: 24px;
-      margin-bottom: 20px;
+      margin-top: 30px;
     }
 
-  <div id="container">
-    <div class="floating-icon" style="animation-delay: 0s;">📚</div>
-    <div class="floating-icon" style="animation-delay: 2s;">📖</div>
-    <div class="floating-icon" style="animation-delay: 4s;">💻</div>
-    <div class="floating-icon" style="animation-delay: 6s;">✏️</div>
-    <div class="floating-icon" style="animation-delay: 8s;">🖥️</div>
-  </div>
-   
-  <script src="scripts.js"></script>
-</html>
-   
     .subject-btn {
       background-color: #4caf50;
       color: white;
@@ -44,22 +41,78 @@
       transform: scale(1.05);
       background-color: #388e3c;
     }
+
+    /* Animated background */
+    .animated-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .shape {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      opacity: 0.5;
+      animation: float 10s infinite linear;
+    }
+
+    .book {
+      background: url('https://cdn-icons-png.flaticon.com/512/29/29302.png') no-repeat center center / contain;
+    }
+
+    .cube {
+      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center center / contain;
+    }
+
+    @keyframes float {
+      0% {
+        top: 100%;
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        top: -60px;
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
+<body>
+
+  <div class="notice">🚧 This site is still under construction 🚧</div>
 
   <h2>📘 Choose a Subject</h2>
   <div id="subjectButtons"></div>
+
+  <div class="animated-bg">
+    <!-- Floating Books -->
+    <div class="shape book" style="left: 5%; animation-delay: 0s;"></div>
+    <div class="shape book" style="left: 30%; animation-delay: 3s;"></div>
+
+    <!-- Floating Cubes -->
+    <div class="shape cube" style="left: 60%; animation-delay: 6s;"></div>
+    <div class="shape cube" style="left: 80%; animation-delay: 1.5s;"></div>
+  </div>
 
   <script>
     const selectedClass = localStorage.getItem("selectedClass");
     const container = document.getElementById("subjectButtons");
 
     const subjectsByClass = {
-      "6": ["Maths", "Physics", "Chemistry", "Biology" , "History and Civics" , "Geography" , "Computers"],
-      "7": ["Maths", "Physics", "Chemistry", "Biology" , "History and Civics" , "Geography" , "Computers"],
-      "8": ["Maths", "Physics", "Chemistry", "Biology" , "History and Civics" , "Geography" , "Computers"],
-      "9": ["Maths", "Physics", "Chemistry", "Biology" , "History and Civics" , "Geography" , "Computer Application"],
-      "10": ["Maths", "Physics", "Chemistry", "Biology" , "History and Civics" , "Geography" , "Computer Application"]
+      "6": ["Maths", "Physics", "Chemistry", "Biology", "History and Civics", "Geography", "Computers"],
+      "7": ["Maths", "Physics", "Chemistry", "Biology", "History and Civics", "Geography", "Computers"],
+      "8": ["Maths", "Physics", "Chemistry", "Biology", "History and Civics", "Geography", "Computers"],
+      "9": ["Maths", "Physics", "Chemistry", "Biology", "History and Civics", "Geography", "Computer Application"],
+      "10": ["Maths", "Physics", "Chemistry", "Biology", "History and Civics", "Geography", "Computer Application"]
     };
 
     if (selectedClass && subjectsByClass[selectedClass]) {
@@ -77,15 +130,6 @@
       container.innerHTML = "<p>⚠️ Class not selected. Please <a href='index.html'>go back to home</a>.</p>";
     }
   </script>
-<div class="animated-bg">
-  <!-- Floating Books -->
-  <div class="shape book" style="left: 5%; animation-delay: 0s;"></div>
-  <div class="shape book" style="left: 30%; animation-delay: 3s;"></div>
-
-  <!-- Floating Cubes -->
-  <div class="shape cube" style="left: 60%; animation-delay: 6s;"></div>
-  <div class="shape cube" style="left: 80%; animation-delay: 1.5s;"></div>
-</div>
 
 </body>
 </html>
