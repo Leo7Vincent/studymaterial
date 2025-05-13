@@ -50,7 +50,7 @@
 
     /* Floating emoji background */
     .emoji-bg {
-      position: floatDown;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
@@ -61,7 +61,7 @@
     }
 
     .floating-emoji {
-      position: floatDown;
+      position: absolute;
       opacity: 0.6;
       animation: floatDown 10s linear infinite;
       will-change: transform;
@@ -121,7 +121,7 @@
 
     // Floating emoji logic
     const emojiContainer = document.getElementById("emojiBackground");
-    const emojis = ["📖", "✏️", "🖥️", "📝", "📐"];
+    const emojis = ["📖", "✏️", "🖥️", "📝", "📐", "📚", "📅", "🔍", "📓", "🎓"];
 
     function createFloatingEmoji() {
       const emoji = document.createElement("div");
@@ -129,7 +129,7 @@
       emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
       emoji.style.left = Math.random() * 100 + "vw";
       emoji.style.animationDelay = Math.random() * 5 + "s";
-      emoji.style.fontSize = (20 + Math.random() * 20) + "px";
+      emoji.style.fontSize = (20 + Math.random() * 25) + "px";
 
       emojiContainer.appendChild(emoji);
       setTimeout(() => {
@@ -137,8 +137,8 @@
       }, 11000);
     }
 
-    // Create a new floating emoji every 5000ms
-    setInterval(createFloatingEmoji, 5000);
+    // Create a new floating emoji every 800ms for a lively effect
+    setInterval(createFloatingEmoji, 800);
   </script>
 
 </body>
