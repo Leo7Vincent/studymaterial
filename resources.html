@@ -5,13 +5,15 @@
   <title>Select Resource</title>
   <style>
     body {
-    h1 {
-      margin-bottom: 30px;
       font-family: 'Segoe UI', sans-serif;
       background: #f9f9f9;
       margin: 0;
       padding: 40px;
       text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 30px;
     }
 
     h2 {
@@ -123,6 +125,11 @@
     const selectedClass = localStorage.getItem("selectedClass");
     const selectedSubject = localStorage.getItem("selectedSubject");
 
+    if (!selectedClass || !selectedSubject) {
+      document.body.innerHTML = "<h2>Class or Subject not selected. Please go back and choose again.</h2>";
+      throw new Error("Missing class or subject");
+    }
+
     const resourceContainer = document.getElementById("resourceButtons");
     const bookContainer = document.getElementById("bookButtons");
 
@@ -157,7 +164,7 @@
 
     function showBooks(subjectKey, resourceType) {
       const books = booksByClassSubject[subjectKey];
-      bookContainer.innerHTML = ""; // Clear old buttons
+      bookContainer.innerHTML = "";
 
       if (!books || resourceType !== "solutions") return;
 
