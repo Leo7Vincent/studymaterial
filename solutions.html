@@ -2,41 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Class 9 Maths (Selina) Solutions</title>
+  <title>Fancy Study Card</title>
   <style>
-    body {
-      background: #e3f2fd;
-      font-family: Arial, sans-serif;
+    .study-card {
+      border-radius: 1em;
+      perspective: 600px;
+      box-shadow:
+        0 0.125em 0.3125em rgba(0, 0, 0, 0.25),
+        0 0.02125em 0.06125em rgba(0, 0, 0, 0.25);
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      padding: 40px;
+      width: 300px;
+      height: 200px;
+      margin: 50px auto;
       text-align: center;
-      padding: 50px;
     }
 
-    h2 {
-      margin-bottom: 30px;
+    .study-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 0 0 1em 1em;
+      width: 100%;
+      height: 50%;
+      transform-origin: center top;
+      transform: rotateX(180deg);
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.4)
+      );
+      transition: transform 0.7s ease-in-out;
+      z-index: -1;
     }
 
-    .file-link {
-      display: block;
-      margin: 10px auto;
-      padding: 12px 20px;
-      background: #1976d2;
-      color: white;
-      text-decoration: none;
-      width: fit-content;
-      border-radius: 8px;
-    }
-
-    .file-link:hover {
-      background: #0d47a1;
+    .study-card:hover::before {
+      transform: rotateX(0deg);
     }
   </style>
 </head>
 <body>
-  <h2>📘 Class 9 Maths (Selina) - Chapter-wise Solutions</h2>
-
-  <a href="../docs/class9-maths-selina-ch1.docx" class="file-link" download>Download Chapter 1</a>
-  <a href="../docs/class9-maths-selina-ch2.docx" class="file-link" download>Download Chapter 2</a>
-  <a href="../docs/class9-maths-selina-ch3.pdf" class="file-link" target="_blank">View Chapter 3 (PDF)</a>
-
+  <div class="study-card">
+    <h3>Class 9 Chemistry</h3>
+    <p>Selina Solutions, Notes & PYQs</p>
+  </div>
 </body>
 </html>
