@@ -23,6 +23,7 @@
     h2 {
       font-size: 24px;
       margin-top: 30px;
+      z-index: 1;
     }
 
     .subject-btn {
@@ -35,6 +36,8 @@
       cursor: pointer;
       font-size: 16px;
       transition: transform 0.2s ease;
+      z-index: 1;
+      position: relative;
     }
 
     .subject-btn:hover {
@@ -42,45 +45,35 @@
       background-color: #388e3c;
     }
 
-    /* Animated background */
-    .animated-bg {
-      position: absolute;
+    /* Floating emoji background */
+    .emoji-bg {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: -1;
+      overflow: hidden;
+      z-index: 0;
     }
 
-    .shape {
+    .floating-emoji {
       position: absolute;
-      width: 50px;
-      height: 50px;
-      opacity: 0.5;
-      animation: float 10s infinite linear;
+      font-size: 32px;
+      opacity: 0.7;
+      animation: floatUp 10s linear infinite;
     }
 
-    .book {
-      background: url('https://cdn-icons-png.flaticon.com/512/29/29302.png') no-repeat center center / contain;
-    }
-
-    .cube {
-      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center center / contain;
-    }
-
-    @keyframes float {
+    @keyframes floatUp {
       0% {
-        top: 100%;
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(100vh) rotate(0deg);
         opacity: 0;
       }
       50% {
         opacity: 1;
       }
       100% {
-        top: -60px;
-        transform: translateY(-100vh) rotate(360deg);
+        transform: translateY(-120px) rotate(360deg);
         opacity: 0;
       }
     }
@@ -93,15 +86,7 @@
   <h2>📘 Choose a Subject</h2>
   <div id="subjectButtons"></div>
 
-  <div class="animated-bg">
-    <!-- Floating Books -->
-    <div class="shape book" style="left: 5%; animation-delay: 0s;"></div>
-    <div class="shape book" style="left: 30%; animation-delay: 3s;"></div>
-
-    <!-- Floating Cubes -->
-    <div class="shape cube" style="left: 60%; animation-delay: 6s;"></div>
-    <div class="shape cube" style="left: 80%; animation-delay: 1.5s;"></div>
-  </div>
+  <div class="emoji-bg" id="emojiBackground"></div>
 
   <script>
     const selectedClass = localStorage.getItem("selectedClass");
@@ -129,6 +114,27 @@
     } else {
       container.innerHTML = "<p>⚠️ Class not selected. Please <a href='index.html'>go back to home</a>.</p>";
     }
+
+    // Floating emoji animation
+    const emojiContainer = document.getElementById("emojiBackground");
+    const emojis = ["📚", "📖", "✏️", "🖥️", "💻", "📝", "📐", "📊", "📅"];
+
+    function createFloatingEmoji() {
+      const emoji = document.createElement("div");
+      emoji.className = "floating-emoji";
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.animationDelay = Math.random() * 10 + "s";
+      emoji.style.fontSize = (24 + Math.random() * 24) + "px";
+
+      emojiContainer.appendChild(emoji);
+
+      setTimeout(() => {
+        emoji.remove();
+      }, 11000); // remove after 11 seconds
+    }
+
+    setInterval(createFloatingEmoji, 800);
   </script>
 
 </body>
