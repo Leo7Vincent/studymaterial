@@ -4,41 +4,54 @@
   <meta charset="UTF-8" />
   <title>Class 6 History and Civics Resources</title>
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background: #f9f9f9; margin: 0; padding: 40px; text-align: center; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+    }
     h2 { margin-bottom: 30px; }
-    .btn { padding: 12px 24px; margin: 10px; font-size: 18px; background: #ffb74d; color: white; border: none; border-radius: 10px; cursor: pointer; }
-    .btn:hover { background: #fb8c00; }
-    .disabled { background: #ccc; cursor: not-allowed; }
-    .book-btn { background: #4db6ac; }
-    .book-btn:hover { background: #00796b; }
+    .btn {
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 18px;
+      background: #4db6ac;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .btn:hover { background: #00796b; }
+    .disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
   <h2>📚 Choose a Resource for Class 6 History and Civics</h2>
-  <div id="resourceButtons">
-    <button class="btn" onclick="navigateToResource('solutions', 'Focus')">Focus Solutions</button>
-    <button class="btn" onclick="navigateToResource('solutions', 'The Trail')">The Trail Solutions</button>
-    <button class="btn" onclick="navigateToResource('solutions', 'Effective')">Effective Solutions</button>
-    <button class="btn" onclick="navigateToResource('solutions', 'Selina')">Selina Solutions</button>
-    <button class="btn" onclick="navigateToResource('notes')">Notes</button>
-    <button class="btn disabled" disabled>PYQ's (Class 10 Only)</button>
-  </div>
-  <div id="bookButtons" style="margin-top:30px;"></div>
+
+  <!-- Textbook Buttons -->
+  <button class="btn" onclick="navigateToResource('solutions', 'Focus')">Focus Solutions</button>
+  <button class="btn" onclick="navigateToResource('solutions', 'The Trail')">The Trail Solutions</button>
+  <button class="btn" onclick="navigateToResource('solutions', 'Effective')">Effective Solutions</button>
+  <button class="btn" onclick="navigateToResource('solutions', 'Selina')">Selina Solutions</button>
+
+  <!-- Notes and PYQs -->
+  <button class="btn" onclick="navigateToResource('notes')">Notes</button>
+  <button class="btn disabled" disabled>PYQs (Class 10 Only)</button>
 
   <script>
     function navigateToResource(type, book = '') {
       let url = '';
       if (type === 'solutions') {
         const bookFile = book.toLowerCase().replace(/\s+/g, '');
-        // Path from class/class6/historyandcivics/resources.html to class/class6/historyandcivics/textbook/{book}/index.html
         url = `textbook/${bookFile}/index.html`;
       } else if (type === 'notes') {
-        // Path from class/class6/historyandcivics/resources.html to class/class6/historyandcivics/notes/notes.html
         url = `notes/notes.html`;
       }
-      // PYQ's button is disabled for this class, so no else if for pyqs needed here.
 
-      console.log("Navigating to URL:", url); // For debugging
       if (url) {
         window.location.href = url;
       }
