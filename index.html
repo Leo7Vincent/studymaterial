@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Select Class</title>
-  <div style="background: #ffeb3b; padding: 10px 0; font-weight: bold; color: #000;">
+  <link rel="stylesheet" href="style.css">
+  <div class="notice">
   🚧 This site is still under construction. Some pages may be incomplete. 🚧
   </div>
   <style>
+    /* Inline styles that are unique to index.html (like the animated background) can stay here */
     body {
       background: linear-gradient(to bottom right, #e3f2fd, #fff3e0);
       font-family: sans-serif;
@@ -67,7 +69,8 @@
       }
     }
 
-    .notice {
+    /* Move common .notice style to style.css */
+    /* .notice {
       position: absolute;
       top: 10px;
       left: 50%;
@@ -78,7 +81,7 @@
       border-radius: 8px;
       font-weight: bold;
       z-index: 2;
-    }
+    } */
   </style>
 </head>
 <body>
@@ -95,7 +98,6 @@
   <div class="animated-bg">
     <div class="shape book" style="right: 5%; animation-delay: 0s;"></div>
     <div class="shape book" style="left: 30%; animation-delay: 3s;"></div>
-
     <div class="shape rectangle" style="left: 60%; animation-delay: 6s;"></div>
     <div class="shape rectangle" style="right: 80%; animation-delay: 1.5s;"></div>
   </div>
@@ -104,12 +106,12 @@
     document.getElementById('classSelector').addEventListener('change', function () {
       const selectedClass = this.value;
       if (selectedClass) {
-        // Store selected class (still needed for resources.html)
         localStorage.setItem("selectedClass", selectedClass);
-        // Redirect to the specific class page
-        window.location.href = `class${selectedClass}.html`;
+        // Correct path to the class-specific subjects.html
+        window.location.href = `class/class${selectedClass}/subjects.html`;
       }
     });
   </script>
+  <script src="script.js"></script>
 </body>
 </html>
