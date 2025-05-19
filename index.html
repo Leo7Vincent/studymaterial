@@ -49,12 +49,10 @@
     }
 
     .shape.book {
-      /* IMPORTANT: Update paths if you move these images to an 'assets' folder! */
       background: url('https://cdn-icons-png.flaticon.com/512/29/29302.png') no-repeat center/contain;
     }
 
     .shape.rectangle {
-      /* IMPORTANT: Update paths if you move these images to an 'assets' folder! */
       background: url('https://cdn-icons-png.flaticon.com/512/1178/1178479.png') no-repeat center/contain;
     }
 
@@ -106,9 +104,10 @@
     document.getElementById('classSelector').addEventListener('change', function () {
       const selectedClass = this.value;
       if (selectedClass) {
+        // Store selected class (still needed for resources.html)
         localStorage.setItem("selectedClass", selectedClass);
-      
-        window.location.href = "subject.html";
+        // Redirect to the specific class page
+        window.location.href = `class${selectedClass}.html`;
       }
     });
   </script>
