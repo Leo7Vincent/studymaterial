@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Class 10 History and Civics Resources</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+    }
+    h2 { margin-bottom: 30px; }
+    .btn {
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 18px;
+      background: #4db6ac;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .btn:hover { background: #00796b; }
+  </style>
+</head>
+<body>
+  <h2>📚 Choose a Resource for Class 10 History and Civics</h2>
+
+  <!-- Textbook Buttons -->
+  <button class="btn" onclick="navigateToResource('solutions', 'Focus')">Focus Solutions</button>
+  <button class="btn" onclick="navigateToResource('solutions', 'The Trail')">The Trail Solutions</button>
+  <button class="btn" onclick="navigateToResource('solutions', 'Effective')">Effective Solutions</button>
+  <button class="btn" onclick="navigateToResource('solutions', 'Selina')">Selina Solutions</button>
+
+  <!-- Notes and PYQs -->
+  <button class="btn" onclick="navigateToResource('notes')">Notes</button>
+  <button class="btn" onclick="navigateToResource('pyqs')">PYQs</button>
+
+  <script>
+    function navigateToResource(type, book = '') {
+      let url = '';
+      if (type === 'solutions') {
+        const bookFile = book.toLowerCase().replace(/\s+/g, '');
+        url = `textbook/${bookFile}/index.html`;
+      } else if (type === 'notes') {
+        url = `notes/notes.html`;
+      } else if (type === 'pyqs') {
+        url = `pyqs/pyqs.html`;
+      }
+
+      if (url) {
+        window.location.href = url;
+      }
+    }
+  </script>
+</body>
+</html>
