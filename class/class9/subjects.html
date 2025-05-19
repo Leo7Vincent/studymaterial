@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class 9 Subjects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            padding: 40px;
+            margin: 0;
+            overflow: hidden;
+        }
+        .notice {
+            background-color: #ffeb3b;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            position: relative;
+            z-index: 1;
+        }
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        .subject-btn {
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 24px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .subject-btn:hover {
+            transform: scale(1.05);
+            background-color: #388e3c;
+        }
+        .emoji-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .floating-emoji {
+            position: absolute;
+            opacity: 0.6;
+            animation: floatUp 10s linear infinite;
+            will-change: transform;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="notice">🚧 This site is still under construction 🚧</div>
+    <h2>📘 Choose a Subject for Class 9</h2>
+    <div id="subjectButtons">
+        <button class="subject-btn" onclick="selectSubject('Maths')">Maths</button>
+        <button class="subject-btn" onclick="selectSubject('Physics')">Physics</button>
+        <button class="subject-btn" onclick="selectSubject('Chemistry')">Chemistry</button>
+        <button class="subject-btn" onclick="selectSubject('Biology')">Biology</button>
+        <button class="subject-btn" onclick="selectSubject('History and Civics')">History and Civics</button>
+        <button class="subject-btn" onclick="selectSubject('Geography')">Geography</button>
+        <button class="subject-btn" onclick="selectSubject('Computer Application')">Computer Application</button>
+    </div>
+    <div class="emoji-bg" id="emojiBackground"></div>
+
+    <script>
+        localStorage.setItem("selectedClass", "9"); // Set for Class 9
+
+        function selectSubject(subject) {
+            localStorage.setItem("selectedSubject", subject);
+            window.location.href = "resources.html";
+        }
+
+        const emojiContainer = document.getElementById("emojiBackground");
+        const emojis = ["📖", "✏️", "🖥️", "📝", "📐", "📚", "💻"];
+        function createFloatingEmoji() {
+            const emoji = document.createElement("div");
+            emoji.className = "floating-emoji";
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = Math.random() * 100 + "vw";
+            emoji.style.animationDelay = Math.random() * 5 + "s";
+            emoji.style.fontSize = (20 + Math.random() * 20) + "px";
+            emojiContainer.appendChild(emoji);
+            setTimeout(() => { emoji.remove(); }, 11000);
+        }
+        setInterval(createFloatingEmoji, 800);
+    </script>
+</body>
+</html>
