@@ -81,11 +81,13 @@
     <div class="emoji-bg" id="emojiBackground"></div>
 
     <script>
-        localStorage.setItem("selectedClass", "9"); // Set for Class 9
+       localStorage.setItem("selectedClass", "9"); // Hardcoded for this specific class page
 
         function selectSubject(subject) {
             localStorage.setItem("selectedSubject", subject);
-            window.location.href = "resources.html";
+            const subjectFolder = subject.toLowerCase().replace(/\s+/g, '');
+            // Correct path from class/{classN}/subjects.html to class/{classN}/{subject}/resources.html
+            window.location.href = `../${subjectFolder}/resources.html`;
         }
 
         const emojiContainer = document.getElementById("emojiBackground");
