@@ -87,7 +87,8 @@
             localStorage.setItem("selectedSubject", subject);
             const subjectFolder = subject.toLowerCase().replace(/\s+/g, '');
             // Correct path from class/{classN}/subjects.html to class/{classN}/{subject}/resources.html
-            window.location.href = `../${subjectFolder}/resources.html`;
+            window.location.href = `${subjectFolder}/resources.html`;
+
         }
 
         const emojiContainer = document.getElementById("emojiBackground");
