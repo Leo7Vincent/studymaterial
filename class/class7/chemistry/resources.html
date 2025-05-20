@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Class 7 Chemistry Resources</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f9f9f9; margin: 0; padding: 40px; text-align: center; }
+    h2 { margin-bottom: 30px; }
+    .btn { padding: 12px 24px; margin: 10px; font-size: 18px; background: #ffb74d; color: white; border: none; border-radius: 10px; cursor: pointer; }
+    .btn:hover { background: #fb8c00; }
+    .disabled { background: #ccc; cursor: not-allowed; }
+    .book-btn { background: #4db6ac; }
+    .book-btn:hover { background: #00796b; }
+  </style>
+</head>
+<body>
+  <h2>📚 Choose a Resource for Class 7 Chemistry</h2>
+  <div id="resourceButtons">
+    <button class="btn" onclick="navigateToResource('solutions', 'Selina')">Selina Solutions</button>
+    <button class="btn" onclick="navigateToResource('solutions', 'Viraf Dalal')">Viraf Dalal Solutions</button>
+    <button class="btn" onclick="navigateToResource('notes')">Notes</button>
+    <button class="btn disabled" disabled>PYQ's (Class 10 Only)</button>
+  </div>
+  <div id="bookButtons" style="margin-top:30px;"></div>
+
+  <script>
+    function navigateToResource(type, book = '') {
+      let url = '';
+      if (type === 'solutions') {
+        const bookFile = book.toLowerCase().replace(/\s+/g, '');
+        // Path from class/class7/chemistry/resources.html to class/class7/chemistry/textbook/{book}/index.html
+        url = `textbook/${bookFile}/index.html`;
+      } else if (type === 'notes') {
+        // Path from class/class7/chemistry/resources.html to class/class7/chemistry/notes/notes.html
+        url = `notes/notes.html`;
+      }
+
+      console.log("Navigating to URL:", url);
+      if (url) {
+        window.location.href = url;
+      }
+    }
+  </script>
+</body>
+</html>
